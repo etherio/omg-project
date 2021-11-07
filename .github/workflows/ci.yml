@@ -1,0 +1,22 @@
+name: CI
+on:
+  push:
+    branches:
+      - BE/master
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14"
+      - run: |
+          npm install
+          npx -p @nestjs/cli nest build
+          git config --global user.name "Etherio"
+          git config --global user.email "etherio97@gmail.com"
+          git checkout --orphan main
+          git add -f dist
+          git commit -m "initial commit"
+          git push -f origin main
