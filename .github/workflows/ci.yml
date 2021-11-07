@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: "14"
       - run: npm ci
-      - run: npx nest build
+      - run: npx -p @nestjs/cli nest build
       - run: git config --config user.name "${{ env.GITHUB_ACTOR }}"
       - run: git config --config user.email "ci+etherio97@users.noreply.github.com"
       - run: |
